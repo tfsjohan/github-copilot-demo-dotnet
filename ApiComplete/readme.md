@@ -104,6 +104,10 @@ You will also need a JokeService class that implements the IJokeService interfac
 </pre>
 </details>
 
+### Add documentation to the GetRandomJoke method
+
+Use the `/doc` slash command to add documentation for the GetRandomJoke method. 
+
 ### Make a JokeController
 
 Let's make the JokeController that will have a single GET endpoint that returns a random joke.
