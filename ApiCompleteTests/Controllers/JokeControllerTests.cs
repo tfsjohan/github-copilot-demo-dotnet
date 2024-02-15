@@ -18,7 +18,7 @@ public class JokeControllerTests
         var joke = new Joke
         {
             Id = "1",
-            Value = "This is a joke"
+            Value = "Chuck Norris can divide by zero."
         };
 
         // Arrange
@@ -30,7 +30,8 @@ public class JokeControllerTests
         var result = await controller.GetJoke();
 
         // Assert
-        Assert.Equal(result.Value, joke);
+        Assert.IsType<OkObjectResult>(result.Result);
+        Assert.Equal(((OkObjectResult)result.Result)?.Value, joke);
     }
 
     // Test a failed fetch of a random joke. Moq the IJokeService throw a HttpRequestException.
