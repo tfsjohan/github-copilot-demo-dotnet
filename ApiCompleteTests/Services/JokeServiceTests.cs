@@ -1,13 +1,7 @@
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Api.Services;
-using Moq;
 using Moq.Protected;
-using Xunit;
 
 namespace ApiTests
 {
@@ -42,7 +36,7 @@ namespace ApiTests
             {
                 Content = new StringContent(serializedJoke)
             };
-            
+
             _mockHttpMessageHandler
                 .Protected()
                 .Setup<Task<HttpResponseMessage>>(
@@ -75,6 +69,5 @@ namespace ApiTests
             // Act and Assert
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _jokeService.GetRandomJoke());
         }
-
     }
 }

@@ -15,6 +15,11 @@ A top level comment can add useful context for the purpose of the file. Keep it 
 Copilot does not yet know about the latest C# features, so it might suggest older ways of doing things. For example how
 to handle nulls and primary constructors.
 
+Copilot might not get it right the first time, so don't forget to iterate on the prompts or code to improve it over
+time.
+
+And don't forget, Copilot is a tool to help you, not replace you.
+
 ## The Chuck Norris Joke API
 
 Let's see if we can make a Chuck Norris API with GitHub Copilot. The API is available at
@@ -29,6 +34,8 @@ Here's what we'll try to do:
 * Make a `JokeController` that can serve up some fresh jokes
 * Make some tests
 
+> **Tip:** Copilot can use context from all open files, so try to open files related to what you're working on.
+
 ### Make a Joke class
 
 Here's a sample response from the joke api:
@@ -38,7 +45,7 @@ Here's a sample response from the joke api:
   "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
   "id": "Bup36JbASxW5R-HzSI5ygA",
   "url": "",
-  "value": "Chuck Norris once participated in a 100 mt race and obviously came first, but Albert Einstein died after watching that cos light came second."
+  "value": "Chuck Norris once participated in a 100 mt race and obviously came first, light came second."
 }
 ```
 
@@ -46,13 +53,14 @@ Here's a sample response from the joke api:
 
 > Pay extra attention to the `icon_url` field. Can you make sure that the `icon_url` is mapped
 > to the C# property `IconUrl`? There are several ways to do this, try to find the best one. Is Copilot Chat or
-> Autocomplete better?
+> Autocomplete better? Does it matter if you have added a `using` statement for `System.Text.Json.Serialization`?
 
 <details>
 <summary>Example prompt (Autocomplete)</summary>
 <pre>
 /*
- Create a class that matches the following JSON:
+Create a class Joke class that can be serialized from the Chuck Norris API. 
+Make sure to use the correct property names and types. Serialize/deserialize all properties names to lower snake case.
 ```json 
 {
    "icon_url" : "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
@@ -72,8 +80,7 @@ should fetch a random joke from the API and return it as a `Joke` object. The AP
 is `https://api.chucknorris.io/jokes/random`.
 
 This service should be **registered with the Dependency Injection container**. Make sure that it is testable and that
-the
-http calls to the api can be mocked. Can Copilot Chat help you with that?
+the http calls to the api can be mocked. Can Copilot Chat help you with that?
 
 For that **you will need a IJokeService interface that has a public method called GetRandomJoke that returns a Joke.
 You will also need a JokeService class that implements the IJokeService interface**.
@@ -99,7 +106,6 @@ You will also need a JokeService class that implements the IJokeService interfac
  * Create a JokeService class that implements IJokeService.
  * The class should take an HttpClient as a constructor argument.
  * The GetRandomJoke method should make a GET request to `https://api.chucknorris.io/jokes/random` and return the result as a Joke object.
- * The Chuck Norris api uses snake_case for properties, make sure serializer settings are set to use **snake_case**.
  */ 
 </pre>
 </details>
@@ -123,6 +129,18 @@ The controller should get an instance of `IJokeService` injected in the construc
 <pre>
 // Make a JokeController that uses the IJokeService.
 // The controller should have a single Http Get endpoint that returns a random joke.
+</pre>
+</details>
+
+### Add Swagger documentation for the JokeController
+
+See if you can get Copilot to help you add Swagger documentation for the JokeController.
+It can produce both a 200 Ok response for a Joke and a 500 Internal Server Error response.
+
+<details>
+<summary>Example prompt (Chat)</summary>
+<pre>
+Add Swagger documentation attributes to the GetJoke action
 </pre>
 </details>
 

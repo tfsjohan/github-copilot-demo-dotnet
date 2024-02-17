@@ -19,9 +19,6 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType<Joke>(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
         public async Task<ActionResult<Joke>> GetJoke()
         {
             try
@@ -31,11 +28,7 @@ namespace Api.Controllers
             }
             catch (HttpRequestException ex)
             {
-                return ex.StatusCode switch
-                {
-                    HttpStatusCode.NotFound => NotFound(),
-                    _ => StatusCode((int)HttpStatusCode.ServiceUnavailable)
-                };
+                return StatusCode((int)HttpStatusCode.ServiceUnavailable);
             }
         }
     }
