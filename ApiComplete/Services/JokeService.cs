@@ -19,9 +19,6 @@ public class JokeService : IJokeService
 
     public async Task<Joke> GetRandomJoke()
     {
-        var response = await _httpClient.GetAsync("jokes/random");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<Joke>(content);
+        return await _httpClient.GetFromJsonAsync<Joke>("jokes/random");
     }
 }
