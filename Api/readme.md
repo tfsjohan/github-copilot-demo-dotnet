@@ -78,7 +78,7 @@ You will also need a JokeService class that implements the IJokeService interfac
 
 > The method will make a http call, so is there something you need to be specific about in the interface and implementation to make that work?
 
-> Can you avoid having the base url hardcoded in the JokeService class and define in `Program.cs`? Is that something Copilot Chat can help with?
+> Can you avoid having the base url hardcoded in the JokeService class and instead be defined in `Program.cs`? Is that something Copilot Chat can help with?
 
 <details>
 <summary>Example prompt (Autocomplete) for IJokeService</summary>
@@ -87,6 +87,7 @@ You will also need a JokeService class that implements the IJokeService interfac
 // The method returns a Joke object. Joke can be null.
 </pre>
 </details>
+&nbsp;
 
 <details>
 <summary>Example prompt (Autocomplete) for JokeService</summary>
@@ -98,8 +99,10 @@ You will also need a JokeService class that implements the IJokeService interfac
  */ 
 </pre>
 </details>
+&nbsp;
 
 > This is a good example of how the resulting code can be better or worse by just adding a using statement. Try adding a `using System.Net.Http.Json;` and see how the result changes.
+
 
 > **Hint:** If you believe that the code is not using the best way to handle http requests, you can ask Copilot Chat to improve it, or you can write the code yourself. One example here might be how the request is executed and then deserialized, which can be done in single line of code.
 
