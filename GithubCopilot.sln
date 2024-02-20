@@ -8,6 +8,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCompleteTests", "ApiCompleteTests\ApiCompleteTests.csproj", "{1573EE39-BA8A-4924-B28E-6A000CE073D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{B613DABE-2ED5-4CA3-8B28-C4D8DE3EA5DD}"
+	ProjectSection(SolutionItems) = preProject
+		.devcontainer\devcontainer.json = .devcontainer\devcontainer.json
+		.github\dependabot.yml = .github\dependabot.yml
+		.vscode\launch.json = .vscode\launch.json
+		.vscode\tasks.json = .vscode\tasks.json
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{6DB3B569-53DE-4CC0-818E-1FDC6CB05CD9}"
 EndProject
