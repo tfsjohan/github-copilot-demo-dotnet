@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class JokeController : ControllerBase
-    {
+namespace Api.Controllers;
 
-    }
-}
+
+
