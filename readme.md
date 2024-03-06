@@ -48,7 +48,7 @@ Here's a sample response from the joke api:
 
 **Create a class called `Joke` that represent the joke response.**
 
-> [!ATTENTION] 
+> [!CAUTION] 
 > Pay extra attention to the `icon_url` field. Can you make sure that the `icon_url` is mapped to the C# property `IconUrl`? There are several ways to do this, try to find the best one. Is Copilot Chat or Autocomplete better? Does it matter if you have added a `using` statement for `System.Text.Json.Serialization`?
 
 <details>
