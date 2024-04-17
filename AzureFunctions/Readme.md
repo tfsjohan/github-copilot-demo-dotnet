@@ -2,7 +2,7 @@
 
 ## Create a new Azure Function
 
-Create an Azure Function that triggers on an EventGrid message and outputs the event data to a CosmosDB collection.
+Create an Azure Function called ProcessClimateEvent with a EventGrid trigger
 
 ## Chat about messaging services
 
@@ -15,3 +15,4 @@ I want help with deciding which messaging service in Azure is best.
 
 
 I have IOT devices that will publish data about every second over MQTT. I need to store this data in a time series database. Please recommend Azure services to solve this. 
+
