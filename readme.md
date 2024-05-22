@@ -27,9 +27,11 @@ Here's what we'll try to do:
 - Make a `JokeController` that can serve up some fresh jokes
 - Make some tests
 
-> **Tip:** Copilot can use context from all open files, so try to open files related to what you're working on.
+> [!TIP]
+> Copilot can use context from all open files, so try to open files related to what you're working on.
 
-> **Tip:** In VS Code or Visual Studio, you can explicitly tell Copilot to use a specific file or the selection by using the `#` command.
+> [!TIP]
+> In VS Code or Visual Studio, you can explicitly tell Copilot to use a specific file or the selection by using the `#` command.
 
 ### Make a Joke class
 
@@ -46,6 +48,7 @@ Here's a sample response from the joke api:
 
 **Create a class called `Joke` that represent the joke response.**
 
+> [!CAUTION] 
 > Pay extra attention to the `icon_url` field. Can you make sure that the `icon_url` is mapped to the C# property `IconUrl`? There are several ways to do this, try to find the best one. Is Copilot Chat or Autocomplete better? Does it matter if you have added a `using` statement for `System.Text.Json.Serialization`?
 
 <details>
@@ -104,7 +107,8 @@ You will also need a JokeService class that implements the IJokeService interfac
 > This is a good example of how the resulting code can be better or worse by just adding a using statement. Try adding a `using System.Net.Http.Json;` and see how the result changes.
 
 
-> **Hint:** If you believe that the code is not using the best way to handle http requests, you can ask Copilot Chat to improve it, or you can write the code yourself. One example here might be how the request is executed and then deserialized, which can be done in single line of code.
+> [!HINT] 
+> If you believe that the code is not using the best way to handle http requests, you can ask Copilot Chat to improve it, or you can write the code yourself. One example here might be how the request is executed and then deserialized, which can be done in single line of code.
 
 #### Register the JokeService with the Dependency Injection container
 <details>
