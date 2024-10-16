@@ -2,6 +2,11 @@
   "github.copilot.chat.experimental.codeGeneration.instructions": [
     {
       "file": ".copilot-instructions.md"
+    },
+    {
+      "language": "csharp",
+      "text": "Use file scoped namespaces"
     }
   ]
 }
+
