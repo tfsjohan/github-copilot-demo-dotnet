@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Aktieguiden.Core"
+                   namespace="Aktieguiden.Core">
+
+    <class name="User" table="Users" optimistic-lock="none">
+        <cache usage="nonstrict-read-write"/>
+        <id name="Id" column="intId">
+            <generator class="identity"/>
+        </id>
+
+        <version name="Version"
+                 generated="always"
+                 unsaved-value="null"
+                 type="BinaryBlob"
+                 insert="false">
+            <column name="tsVersion"
+                    not-null="false"
+                    sql-type="timestamp"/>
+        </version>
+
+        <property name="Email" column="varEmail" not-null="true" length="255" unique="true"/>
+        <property name="Password" column="varPwd" not-null="true" length="50"/>
+        <property name="CreateDate" column="dtmCreated"/>
+        <property name="LastActivityDate" column="dtmLastUpdate"/>
+        <property name="LastLoginDate" column="dtmLastLogin"/>
+        <property name="Logins" column="intLogins"/>
+        <property name="StatusInternal" column="intStatus"/>
+        <property name="Culture" column="varCulture"/>
+
+        <map name="Properties" table="User_Properties" cascade="save-update" lazy="true" fetch="select">
+            <cache usage="nonstrict-read-write"/>
+            <key column="intUserId"/>
+            <index column="varName" type="string"/>
+            <element column="varValue"/>
+        </map>
+
+        <map name="Texts" table="User_TextStorage" cascade="save-update" fetch="select" lazy="true">
+            <cache usage="nonstrict-read-write"/>
+            <key column="intUserId"/>
+            <index column="varType" type="string"/>
+            <element column="txtContent" type="StringClob"/>
+        </map>
+
+        <map name="SystemRoles" table="User_Roles" lazy="true" cascade="all" inverse="true" where="intGroupId Is Null">
+            <cache usage="read-write"/>
+            <key column="intUserId" not-null="true" on-delete="cascade"/>
+            <index column="varRole" type="string"/>
+            <one-to-many class="Aktieguiden.Core.SystemRole, Aktieguiden.Core"/>
+        </map>
+
+        <set name="OwnedGroups" table="Groups" lazy="true" cascade="all" inverse="true">
+            <cache usage="read-write"/>
+            <key column="intOwnerId" not-null="true"/>
+            <one-to-many class="Aktieguiden.Core.Group, Aktieguiden.Core"/>
+        </set>
+
+        <set name="JoinedGroups" table="User_Roles" lazy="true" inverse="true" cascade="none"
+             where="intGroupId Is Not Null And varRole = 'Viewer' And dtmExpires > getdate()">
+            <cache usage="read-write"/>
+            <key column="intUserId" not-null="true"/>
+            <many-to-many column="intGroupId" class="Aktieguiden.Core.Group, Aktieguiden.Core"/>
+        </set>
+
+    </class>
+
+</hibernate-mapping>
