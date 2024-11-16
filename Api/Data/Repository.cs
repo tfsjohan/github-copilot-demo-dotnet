@@ -12,8 +12,9 @@ public class Repository(IConfiguration configuration) : IRepository
 
         connection.Open();
         using var command = new SqlCommand(
-            $"SELECT * FROM Persons WHERE Id = '{id}'",
+            "SELECT * FROM Persons WHERE Id = @id",
             connection);
+        command.Parameters.AddWithValue("@id", id);
 
         using var reader = command.ExecuteReader();
         if (reader.Read())
@@ -38,8 +39,9 @@ public class Repository(IConfiguration configuration) : IRepository
 
         connection.Open();
         using var command = new SqlCommand(
-            $"SELECT * FROM Persons WHERE Id = '{id}'",
+            "SELECT * FROM Persons WHERE Id = @id",
             connection);
+        command.Parameters.AddWithValue("@id", id);
 
         using var reader = command.ExecuteReader();
         if (reader.Read())
@@ -66,9 +68,15 @@ public class Repository(IConfiguration configuration) : IRepository
         person.Id = Guid.NewGuid().ToString();
 
         using var command = new SqlCommand(
-            $"INSERT INTO Persons (Id, Name, Age, Description) " +
-            $"VALUES ('{person.Id}', '{person.Name}', {person.Age}, '{person.Description}')",
+            """
+            INSERT INTO Persons (Id, Name, Age, Description) 
+            VALUES (@id, @name, @age, @description)
+            """,
             connection);
+        command.Parameters.AddWithValue("@id", person.Id);
+        command.Parameters.AddWithValue("@name", person.Name);
+        command.Parameters.AddWithValue("@age", person.Age);
+        command.Parameters.AddWithValue("@description", person.Description);
 
         command.ExecuteNonQuery();
 
@@ -83,9 +91,16 @@ public class Repository(IConfiguration configuration) : IRepository
         connection.Open();
 
         using var command = new SqlCommand(
-            $"UPDATE Persons SET Name = '{person.Name}', Age = {person.Age}, Description = '{person.Description}' " +
-            $"WHERE Id = '{person.Id}'",
+            """
+            UPDATE Persons 
+            SET Name = @name, Age = @age, Description = @description 
+            WHERE Id = @id
+            """,
             connection);
+        command.Parameters.AddWithValue("@id", person.Id);
+        command.Parameters.AddWithValue("@name", person.Name);
+        command.Parameters.AddWithValue("@age", person.Age);
+        command.Parameters.AddWithValue("@description", person.Description);
 
         command.ExecuteNonQuery();
     }
