@@ -35,42 +35,6 @@ public class PushNotification
     public PushNotificationPlatformOverride Web { get; set; }
 }
 
-//public static class PushNotificationClickActionExtensions
-//{
-//    public static void AndroidClickAction(this PushNotification notification, string clickAction)
-//    {
-//        notification.Android = new PushNotificationPlatformOverride()
-//        {
-//            Notification = new PushNotificationClickAction()
-//            {
-//                ClickAction = clickAction
-//            }
-//        };
-//    }
-
-//    public static void WebClickAction(this PushNotification notification, string clickAction)
-//    {
-//        notification.Web = new PushNotificationPlatformOverride()
-//        {
-//            Notification = new PushNotificationClickAction()
-//            {
-//                ClickAction = clickAction
-//            }
-//        };
-//    }
-
-//    public static void IosClickAction(this PushNotification notification, string clickAction)
-//    {
-//        notification.Ios = new PushNotificationPlatformOverride()
-//        {
-//            Notification = new PushNotificationClickAction()
-//            {
-//                ClickAction = clickAction
-//            }
-//        };
-//    }
-//}
-
 public class PushNotificationPlatformOverride
 {
     [JsonProperty("data")]
